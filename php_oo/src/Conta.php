@@ -2,9 +2,22 @@
 
 class Conta
 {
-    private string $cpfTitular;
-    private string $nomeTitular;
-    private float $saldo = 0;
+    private $titular;
+    private $saldo;
+    private static $numeroDeContas = 0;
+
+    public function __construct(Titular $titular)
+    {
+        $this->titular= $titular;
+        $this->saldo = 0;
+
+        self:: $numeroDeContas++;
+    }
+
+    public function  __destruct()
+    {
+        self::$numeroDeContas --;
+    }
 
 
     public function saca(float $valorASacar){
@@ -43,18 +56,9 @@ class Conta
         return $this-> saldo;
     }
 
-    public function defineCpfTitular(string $cpf)
+    public function recuperaNomeTitular()
     {
-        $cpfValido = preg_match
-        (
-            '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/',
-            $cpf
-        );
-        if($cpfValido){
-        return $this->cpfTitular = $cpf;
-        }else{
-            echo "cpf invalido, verifique as informações novamente".PHP_EOL;
-        }
+        return $this->titular->recuperaNome();
     }
 
     public function recuperaCpfTitular():string
@@ -65,14 +69,12 @@ class Conta
        return $this->cpfTitular;
     }
 
-    public function defineNomeTitular(string $nomeTitular):string
-    {
-        return $this->nomeTitular = $nomeTitular;
-    }
 
-    public function recuperaNomeTitular(){
-        return $this ->nomeTitular;
-    }
+
+    public static function recuperaNumeroDeContas():int
+    {
+        return self :: $numeroDeContas;
+    } 
 
 
 }
