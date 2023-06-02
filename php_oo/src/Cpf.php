@@ -2,7 +2,7 @@
 
 class Cpf 
 {
-    private string $numero;
+    private  $numero;
 
     public function __construct(string $numero)
     {

@@ -6,17 +6,18 @@ class Conta
     private $saldo;
     private static $numeroDeContas = 0;
 
+
     public function __construct(Titular $titular)
     {
         $this->titular= $titular;
         $this->saldo = 0;
 
-        self:: $numeroDeContas++;
+        self::$numeroDeContas++;
     }
 
     public function  __destruct()
     {
-        self::$numeroDeContas --;
+        self::$numeroDeContas--;
     }
 
 
@@ -62,18 +63,15 @@ class Conta
     }
 
     public function recuperaCpfTitular():string
-    {
-        if($this->defineCpfTitular($this->recuperaCpfTitular()) == null){
-            echo "cpf invalido".PHP_EOL;
-        }
-       return $this->cpfTitular;
+    {   
+       return $this->titular->recuperaCpf();
     }
 
 
 
     public static function recuperaNumeroDeContas():int
     {
-        return self :: $numeroDeContas;
+        return self::$numeroDeContas;
     } 
 
 

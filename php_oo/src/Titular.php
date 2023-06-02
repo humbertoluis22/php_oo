@@ -12,12 +12,12 @@ class Titular
         $this->nome =$nome;
     }
 
-    public function recuperaCpf()
+    public function recuperaCpf():string
     {
-        return $this->cpf->recuperaCpf;
+        return $this->cpf->recuperaNumero();
     }
 
-    public function recuperaNome()
+    public function recuperaNome():string
     {
         return $this->nome;
     }
